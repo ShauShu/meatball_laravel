@@ -13,7 +13,7 @@ class Commodity extends Model
         'name',
         'price',
         'type',
-        'info',
+        'description',
         'pic',
     ];
 
