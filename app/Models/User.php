@@ -19,9 +19,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'account',
+        'address',
+        'phone',
+        'tel',
         'email',
+        'invoice_carrie',
         'password',
     ];
+
+    public function orders(){
+        return $this->hasMany('App\Models\Order');
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.
