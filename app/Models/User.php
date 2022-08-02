@@ -31,6 +31,9 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany('App\Models\Order');
     }
+    public function commodities(){
+        return $this->belongsToMany('App\Models\Commodity');
+    }
 
 
     /**
