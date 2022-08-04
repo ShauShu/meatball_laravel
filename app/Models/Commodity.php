@@ -23,5 +23,8 @@ class Commodity extends Model
     public function orders(){
         return $this->belongsToMany('App\Models\Order');
     }
+    public function comm_changes(){
+        return $this->hasMany('App\Models\Comm_change');
+    }
 
 }
