@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\CommodityOrder;
 
 class Order extends Model
 {
@@ -19,6 +20,6 @@ class Order extends Model
         return  $this->belongsTo('App\Models\User');  
     }
     public function commodities(){
-        return $this->belongsToMany('App\Models\Commodity');
+        return $this->belongsToMany('App\Models\Commodity')->using(CommodityOrder::class);;
     }
 }
