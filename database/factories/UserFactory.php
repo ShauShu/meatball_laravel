@@ -20,8 +20,13 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->safeEmail(),
+            "account" => $this->faker->userName,
+            "address" => $this->faker->address,
+            "phone" => $this->faker->phoneNumber,
+            "tel" => $this->faker->tollFreePhoneNumber,
             'email_verified_at' => now(),
-            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            //'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+            'password' => '1234',
             'remember_token' => Str::random(10),
         ];
     }
