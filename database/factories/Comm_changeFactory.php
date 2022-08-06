@@ -19,10 +19,19 @@ class Comm_changeFactory extends Factory
     {
         $Commodity_ids = Commodity::all()->pluck('id');
         $CommodityOrder_ids = CommodityOrder::all()->pluck('id');
+        if($this->faker->boolean($chanceOfGettingTrue = 50)){
         return [
             "count" => $this->faker->numberBetween(10,500),
+            //"Commodity_id" => $this->faker->boolean($chanceOfGettingTrue = 50)?$this->faker->randomElement($Commodity_ids):null,
             "Commodity_id" => $this->faker->randomElement($Commodity_ids),
-            "CommodityOrder_id" => $this->faker->boolean($chanceOfGettingTrue = 50)?$this->faker->randomElement($CommodityOrder_ids):null
-        ];
+            "CommodityOrder_id" => null
+        ];}
+        else{
+            return [
+                "count" => null,
+                "Commodity_id" => null,
+                "CommodityOrder_id" => $this->faker->randomElement($CommodityOrder_ids)
+            ];
+        }
     }
 }
