@@ -4,7 +4,12 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Commodity;
+use App\Models\CommodityUser;
+use App\Models\CommodityOrder;
+use App\Models\Comm_change;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -20,5 +25,13 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        User::factory()->count(20)->create();
+        Order::factory()->count(50)->create();
+        Commodity::factory()->count(30)->create();
+        CommodityUser::factory()->count(60)->create();
+        CommodityOrder::factory()->count(120)->create();
+        Comm_change::factory()->count(120)->create();
+
     }
 }

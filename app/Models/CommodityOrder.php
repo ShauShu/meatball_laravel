@@ -13,7 +13,7 @@ class CommodityOrder extends Pivot
     //     'commodity_id',
     //     'order_id',
     // ];
-    public function comm_change(){
-        return  $this->belongsTo('Comm_change');  
-    }
+    // public function comm_change(){
+    //     return  $this->belongsTo('App\Models\Comm_change');  
+    // }
 }
