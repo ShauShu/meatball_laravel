@@ -17,8 +17,10 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+
     public function run()
     {
+        
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
@@ -32,6 +34,11 @@ class DatabaseSeeder extends Seeder
         CommodityUser::factory()->count(60)->create();
         CommodityOrder::factory()->count(120)->create();
         Comm_change::factory()->count(120)->create();
+        $CommodityOrder_ids = CommodityOrder::all();
+        foreach ($CommodityOrder_ids as $key=>$item) {
+            $count = $item->count;
+            Comm_change::updateOrCreate(['CommodityOrder_id' => $key+1,"Commodity_id" => null,"count" => $count]);
+        }
 
     }
 }

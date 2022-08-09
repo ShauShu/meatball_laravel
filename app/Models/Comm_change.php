@@ -16,8 +16,8 @@ class Comm_change extends Model
     public function commodity(){
         return  $this->belongsTo('App\Models\Commodity');  
     }
-    // public function commodityorder(){
-    //     return $this->hasOne('App\Models\CommodityOrder');
-    // }
+    public function commodityorder(){
+        return $this->hasOne('App\Models\CommodityOrder');
+    }
 
 }
