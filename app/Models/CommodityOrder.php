@@ -14,6 +14,6 @@ class CommodityOrder extends Pivot
     //     'order_id',
     // ];
     public function comm_change(){
-        return  $this->belongsTo('App\Models\Comm_change');  
+        return  $this->hasOne('App\Models\Comm_change');  
     }
 }
