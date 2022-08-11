@@ -112,8 +112,17 @@ class AuthController extends Controller
     {
         //echo $request;
         if(!$request->user()){
-            echo "12";
+            echo "erro";
         }else
         return response()->json($request->user());
+    }
+
+    public function updateUser(Request $request, User $user)
+    {
+        $user = $request->user();
+        $user->update($request->all());
+        $password = bcrypt($request->password);
+        $user->update(['password' => $password]);
+        return response($user,201);
     }
 }

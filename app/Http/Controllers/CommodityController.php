@@ -46,7 +46,6 @@ class CommodityController extends Controller
      */
     public function show(Commodity $commodity)
     {
-        $commodities = Commodity::get();
         return response($commodity, 200);
     }
 
