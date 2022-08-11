@@ -39,6 +39,15 @@ class DatabaseSeeder extends Seeder
             $count = $item->count;
             Comm_change::updateOrCreate(['CommodityOrder_id' => $key+1,"Commodity_id" => null,"count" => $count]);
         }
-
+        $admin = [
+        "name"=>"admin",
+        "account"=>"admin",
+        "address"=>"nuknown",
+        "phone"=>"nuknown",
+        "email"=>"admin@example.com",
+        "password"=>"123",
+        "admin"=>true
+        ];
+        User::create($admin);
     }
 }
