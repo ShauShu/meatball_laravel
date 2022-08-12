@@ -59,4 +59,5 @@ Route::group([
     'middleware' => 'auth:api'
 ], function() {
     Route::get('/commodity_user',[CommodityUserController::class, 'indexComm']);
+    Route::post('/commodity_users',[CommodityUserController::class, 'storeComm']);
 });
