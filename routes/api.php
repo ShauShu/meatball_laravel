@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CommodityController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CommodityUserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -30,7 +31,7 @@ Route::group([
     ], function() {
         Route::get('/logout',[AuthController::class, 'logout']);
         Route::get('/currentUser',[AuthController::class, 'user']);
-        Route::patch('/currentUser',[AuthController::class, 'updateUser']);
+        Route::put('/currentUser',[AuthController::class, 'updateUser']);
     });
 });
 Route::group([
@@ -51,6 +52,11 @@ Route::group([
           Route::get('/users/{user}',[AdminController::class, 'showUser']);
           Route::post('/commodities',[AdminController::class, 'storeComm']);
           Route::delete('/commodities/{commodity}',[AdminController::class, 'destroyComm']);
-          Route::patch('/commodities/{commodity}',[AdminController::class, 'updateComm']);
+          Route::put('/commodities/{commodity}',[AdminController::class, 'updateComm']);
       });
+});
+Route::group([
+    'middleware' => 'auth:api'
+], function() {
+    Route::get('/commodity_user',[CommodityUserController::class, 'indexComm']);
 });

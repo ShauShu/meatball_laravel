@@ -16,7 +16,7 @@ class Commodity extends Model
         'description',
         'pic',
     ];
-
+    protected $hidden=['pivot'];
     public function users(){
         return $this->belongsToMany('App\Models\User');
     }
@@ -26,5 +26,5 @@ class Commodity extends Model
     public function comm_changes(){
         return $this->hasMany('App\Models\Comm_change');
     }
-
+   
 }

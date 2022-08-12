@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
     public function commodities(){
-        return $this->belongsToMany('App\Models\Commodity')->using(CommodityUser::class);;
+        return $this->belongsToMany('App\Models\Commodity')->using(CommodityUser::class)->withPivot('count');
     }
 
 
