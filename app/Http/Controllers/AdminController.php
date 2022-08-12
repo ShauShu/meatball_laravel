@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Commodity;
+use App\Models\Comm_change;
 
 class AdminController extends Controller
 {
@@ -40,33 +41,55 @@ class AdminController extends Controller
         ]);
     }
     
-    public function indexUsers()
+    public function indexUsers()//回傳所有使用者
     {
         $users = User::get();
         return response(['users' => $users], 200);
     }
 
-    public function showUser(User $user)
+    public function showUser(User $user)//回傳特定使用者
     {
         return response($user, 200);
     }
 
-    public function storeComm(Request $request)
+    public function storeComm(Request $request)//新增商品
     {
         $commodity = Commodity::create($request->all());
         return response($commodity, 201);
     }
 
-    public function destroyComm(Commodity $commodity)
+    public function destroyComm(Commodity $commodity)//刪除商品
     {
         $commodity->delete();
         return response("",204);
     }
 
-    public function updateComm(Request $request, Commodity $commodity)
+    public function updateComm(Request $request, Commodity $commodity)//更新商品
     {
         $commodity->update($request->all());
         return response($commodity,201);
     }
     
+    public function indexCommChanges()//回傳所有商品異動資料
+    {
+        $Commchanges = Comm_change::get();
+        return response(['Commchanges' => $Commchanges], 200);
+    }
+
+    public function showCommChanges(Commodity $commodity)//回傳特定使用者
+    {
+        $id = $commodity->id;
+        $commodity = Commodity::find($id);
+        $storeCommChanges = $commodity->comm_changes;
+        return response($storeCommChanges, 200);
+    }
+
+    public function storeCommStock(Request $request)//新增商品
+    {
+        $commodityId = $request->commodity_id;
+        $count = $request->count;
+        $commChange = Comm_change::create(['commodity_id'=>$commodityId,'count'=>$count]);
+        return response($commChange, 201);
+    }
+
 }

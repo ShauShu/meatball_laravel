@@ -34,10 +34,11 @@ class DatabaseSeeder extends Seeder
         CommodityUser::factory()->count(60)->create();
         CommodityOrder::factory()->count(120)->create();
         Comm_change::factory()->count(120)->create();
-        $CommodityOrder_ids = CommodityOrder::all();
-        foreach ($CommodityOrder_ids as $key=>$item) {
+        $CommodityOrder = CommodityOrder::all();
+        foreach ($CommodityOrder as $key=>$item) {
             $count = $item->count;
-            Comm_change::updateOrCreate(['CommodityOrder_id' => $key+1,"Commodity_id" => null,"count" => $count]);
+            $commodity_id = $item->commodity_id;
+            Comm_change::updateOrCreate(['CommodityOrder_id' => $key+1,"commodity_id" => $commodity_id,"count" => $count]);
         }
         $admin = [
         "name"=>"admin",

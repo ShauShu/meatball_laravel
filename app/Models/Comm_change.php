@@ -10,7 +10,8 @@ class Comm_change extends Model
     use HasFactory;
 
     protected $fillable = [
-        'count'
+        'count',
+        'commodity_id'
     ];
 
     public function commodity(){

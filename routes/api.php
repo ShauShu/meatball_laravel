@@ -48,11 +48,14 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
       ], function() {
-          Route::get('/users',[AdminController::class, 'indexUsers']);
-          Route::get('/users/{user}',[AdminController::class, 'showUser']);
-          Route::post('/commodities',[AdminController::class, 'storeComm']);
-          Route::delete('/commodities/{commodity}',[AdminController::class, 'destroyComm']);
-          Route::put('/commodities/{commodity}',[AdminController::class, 'updateComm']);
+          Route::get('/users',[AdminController::class, 'indexUsers']);//回傳所有使用者
+          Route::get('/users/{user}',[AdminController::class, 'showUser']);//回傳特定使用者
+          Route::post('/commodities',[AdminController::class, 'storeComm']);//新增商品
+          Route::delete('/commodities/{commodity}',[AdminController::class, 'destroyComm']);//刪除商品
+          Route::put('/commodities/{commodity}',[AdminController::class, 'updateComm']);//更新商品
+          Route::get('/comm_changes',[AdminController::class, 'indexCommChanges']);//回傳所有商品異動表
+          Route::get('/comm_changes/{commodity}',[AdminController::class, 'showCommChanges']);//回傳特定商品異動表
+          Route::post('/comm_changes',[AdminController::class, 'storeCommStock']);//新增商品庫存數量
       });
 });
 Route::group([
