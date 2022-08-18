@@ -56,6 +56,8 @@ Route::group([
           Route::get('/comm_changes',[AdminController::class, 'indexCommChanges']);//回傳所有商品異動表
           Route::get('/comm_changes/{commodity}',[AdminController::class, 'showCommChanges']);//回傳特定商品異動表
           Route::post('/comm_changes',[AdminController::class, 'storeCommStock']);//新增商品庫存數量
+          Route::post('/upload_pic',[AdminController::class, 'upload']);
+          Route::get('/geturl',[AdminController::class, 'geturl']);
       });
 });
 Route::group([

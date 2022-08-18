@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Commodity;
 use App\Models\Comm_change;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -92,4 +93,27 @@ class AdminController extends Controller
         return response($commChange, 201);
     }
 
+    public function upload(Request $request)
+    {
+        $file = $request->file('file');
+        $filename = $file->getClientOriginalName();
+        $path = $request->file('file')->storeAs('photo', $filename);
+        Storage::disk('s3')->put($path, file_get_contents($file));
+        if (Storage::disk('s3')->exists('photo/'.$filename)) {
+            $url = Storage::disk('s3')->url('photo/'.$filename);
+            return $url;
+        }else{
+            return 'unfound';
+        }
+    }
+    public function geturl(Request $request)
+    {
+        $filename = $request->filename;
+        if (Storage::disk('s3')->exists('photo/'.$filename)) {
+            $url = Storage::disk('s3')->url('photo/'.$filename);
+            return $url;
+        }else{
+            return 'unfound';
+        }
+    }
 }
