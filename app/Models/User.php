@@ -6,7 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -32,7 +32,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Order');
     }
     public function commodities(){
-        return $this->belongsToMany('App\Models\Commodity')->using(CommodityUser::class);;
+        return $this->belongsToMany('App\Models\Commodity')->using(CommodityUser::class)->withPivot('count');
     }
 
 

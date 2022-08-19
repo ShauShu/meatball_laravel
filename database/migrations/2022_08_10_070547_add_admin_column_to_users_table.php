@@ -14,11 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('account');
-            $table->string('address');
-            $table->string('phone');
-            $table->string('tel')->nullable();
-            $table->string('invoice_carrie')->nullable();  
+            $table->boolean('admin')->default(false); 
         });
     }
 

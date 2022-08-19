@@ -46,5 +46,29 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+
+        $this->renderable(function(Exception $e, $request) {
+            return $this->handleException($request, $e);
+        });
+    }
+
+    private function handleException($request, Exception $exception)
+    {
+        switch (true) {
+            case $exception instanceof NotFoundHttpException:
+                return response()->json([
+                    'message' => 'Http not found.'
+                ], 404);
+            case $exception instanceof MethodNotAllowedHttpException:
+                return response()->json([
+                    'message' => 'Method not allowed.'
+                ], 405);
+            case $exception instanceof UnauthorizedHttpException:
+                return response()->json([
+                    'message' => 'Unauthorized.'
+                ], 401);
+        }
+
+        return null;
     }
 }

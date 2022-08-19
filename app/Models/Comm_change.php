@@ -10,14 +10,15 @@ class Comm_change extends Model
     use HasFactory;
 
     protected $fillable = [
-        'count'
+        'count',
+        'commodity_id'
     ];
 
     public function commodity(){
         return  $this->belongsTo('App\Models\Commodity');  
     }
     public function commodityorder(){
-        return $this->hasOne('App\Models\CommodityOrder');
+        return $this->belongsTo('App\Models\CommodityOrder');
     }
 
 }
